@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Toolbox"
 include(":app")
+include(":modules:domain")

@@ -53,6 +53,7 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":modules:domain")))
     implementation("androidx.core:core-ktx:${Version.ANDROID_CORE}")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:${Version.LIFECYCLE}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Version.LIFECYCLE}")
