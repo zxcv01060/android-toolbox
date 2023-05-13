@@ -118,32 +118,47 @@ private fun DateCalculatorTabRow(selectedTabIndex: Int, onTabSelect: (Int) -> Un
 private fun PastFutureDaysTabContent(viewModel: DateCalculatorViewModel) {
     val state = viewModel.pastFutureDaysCalculatorState
 
+    CalculatorTabContent(
+        calculatorContent = {
+            PastFutureDaysCalculator(
+                state = state,
+                onValueChange = viewModel::onPastFutureDaysChange
+            )
+        },
+        resultContent = {
+            Text(
+                text = stringResource(
+                    id = if (state.isPast) {
+                        R.string.date_calculator_past_future_days_past_result
+                    } else {
+                        R.string.date_calculator_past_future_days_future_result
+                    },
+                    state.safeDays,
+                    viewModel.pastFutureDaysCalculateResult.format(
+                        DateTimeFormatter.ofPattern(stringResource(id = R.string.common_date_include_week_format))
+                    )
+                )
+            )
+        }
+    )
+}
+
+@Composable
+private fun CalculatorTabContent(
+    calculatorContent: @Composable () -> Unit,
+    resultContent: @Composable () -> Unit
+) {
     Column(
         modifier = Modifier.verticalScroll(state = rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        PastFutureDaysCalculator(
-            state = state,
-            onValueChange = viewModel::onPastFutureDaysChange
-        )
+        calculatorContent()
 
         Spacer(modifier = Modifier.height(height = 16.dp))
 
         Text(text = stringResource(id = R.string.common_calculate_result))
 
-        Text(
-            text = stringResource(
-                id = if (state.isPast) {
-                    R.string.date_calculator_past_future_days_past_result
-                } else {
-                    R.string.date_calculator_past_future_days_future_result
-                },
-                state.safeDays,
-                viewModel.pastFutureDaysCalculateResult.format(
-                    DateTimeFormatter.ofPattern(stringResource(id = R.string.common_date_include_week_format))
-                )
-            )
-        )
+        resultContent()
     }
 }
 
@@ -151,26 +166,22 @@ private fun PastFutureDaysTabContent(viewModel: DateCalculatorViewModel) {
 private fun SubtractDaysTabContent(viewModel: DateCalculatorViewModel) {
     val state = viewModel.subtractDaysCalculatorState
 
-    Column(
-        modifier = Modifier.verticalScroll(state = rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        SubtractDaysCalculator(
-            state = state,
-            onValueChange = viewModel::onSubtractDaysChange
-        )
-
-        Spacer(modifier = Modifier.height(height = 16.dp))
-
-        Text(text = stringResource(id = R.string.common_calculate_result))
-
-        Text(
-            text = stringResource(
-                id = R.string.date_calculator_subtract_days_result,
-                viewModel.subtractDaysCalculateResult
+    CalculatorTabContent(
+        calculatorContent = {
+            SubtractDaysCalculator(
+                state = state,
+                onValueChange = viewModel::onSubtractDaysChange
             )
-        )
-    }
+        },
+        resultContent = {
+            Text(
+                text = stringResource(
+                    id = R.string.date_calculator_subtract_days_result,
+                    viewModel.subtractDaysCalculateResult
+                )
+            )
+        }
+    )
 }
 
 @AppPreview
