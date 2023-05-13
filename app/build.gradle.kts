@@ -4,6 +4,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -52,6 +54,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation(project(mapOf("path" to ":modules:domain")))
     implementation("androidx.core:core-ktx:${Version.ANDROID_CORE}")
@@ -65,6 +71,8 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("com.maxkeppeler.sheets-compose-dialogs:core:${Version.SHEETS_COMPOSE_DIALOGS}")
     implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:${Version.SHEETS_COMPOSE_DIALOGS}")
+    implementation("com.google.dagger:hilt-android:${Version.DAGGER_HILT}")
+    kapt("com.google.dagger:hilt-android-compiler:${Version.DAGGER_HILT}")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

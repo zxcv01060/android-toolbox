@@ -57,4 +57,13 @@ object Version {
      * 版本：https://github.com/maxkeppeler/sheets-compose-dialogs/releases
      */
     const val SHEETS_COMPOSE_DIALOGS = "1.1.1"
+
+    /**
+     * Jetpack DI套件 - Hilt
+     *
+     * Group：com.google.dagger
+     *
+     * 版本：https://mvnrepository.com/artifact/com.google.dagger/hilt-android
+     */
+    const val DAGGER_HILT = "2.46"
 }
