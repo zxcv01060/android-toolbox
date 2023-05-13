@@ -48,4 +48,13 @@ object Version {
      * 版本：https://developer.android.com/jetpack/androidx/releases/lifecycle
      */
     const val LIFECYCLE = "2.6.1"
+
+    /**
+     * 以Jetpack Compose實作的各種選擇器、Dialog，包含日期、時間、顏色等
+     *
+     * Group：com.maxkeppeler.sheets-compose-dialogs
+     *
+     * 版本：https://github.com/maxkeppeler/sheets-compose-dialogs/releases
+     */
+    const val SHEETS_COMPOSE_DIALOGS = "1.1.1"
 }

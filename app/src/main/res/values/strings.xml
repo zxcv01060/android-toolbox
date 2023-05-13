@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Toolbox</string>
+
+    <string name="common_back">返回</string>
+    <string name="common_date_format">yyyy/MM/dd</string>
+    <string name="common_date_include_week_format">yyyy/MM/dd EEEE</string>
+    <string name="common_calculate_result">計算結果：</string>
+
+    <string name="date_calculator_title">日期計算機</string>
+    <string name="date_calculator_past_future_days_title">幾天前、後計算</string>
+    <string name="date_calculator_past_future_days_date">日期</string>
+    <string name="date_calculator_past_future_days_is_past">改為計算過去日期</string>
+    <string name="date_calculator_past_future_days_count">天數</string>
+    <string name="date_calculator_past_future_days_past_result">%1$d 天前為 %2$s</string>
+    <string name="date_calculator_past_future_days_future_result">%1$d 天後為 %2$s</string>
+    <string name="date_calculator_subtract_days_title">相隔幾天計算</string>
+    <string name="date_calculator_subtract_days_first_date">開始日期</string>
+    <string name="date_calculator_subtract_days_second_date">結束日期</string>
+    <string name="date_calculator_subtract_days_result">一共相隔 %1$d 天(含結束日期)</string>
 </resources>
