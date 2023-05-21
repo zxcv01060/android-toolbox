@@ -2,6 +2,7 @@
     <string name="app_name">Toolbox</string>
 
     <string name="common_back">返回</string>
+    <string name="common_menu">選單</string>
     <string name="common_date_format">yyyy/MM/dd</string>
     <string name="common_date_include_week_format">yyyy/MM/dd EEEE</string>
     <string name="common_calculate_result">計算結果：</string>

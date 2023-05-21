@@ -1,0 +1,14 @@
+package tw.idv.louislee.toolbox.ui.page
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import tw.idv.louislee.toolbox.R
+
+enum class DrawerScreen(val route: String) {
+    DATE_CALCULATOR("DateCalculator")
+}
+
+@Composable
+fun DrawerScreen.title(): String = when (this) {
+    DrawerScreen.DATE_CALCULATOR -> stringResource(id = R.string.date_calculator_title)
+}

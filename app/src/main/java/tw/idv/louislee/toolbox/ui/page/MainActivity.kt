@@ -3,213 +3,91 @@ package tw.idv.louislee.toolbox.ui.page
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import tw.idv.louislee.toolbox.R
+import kotlinx.coroutines.launch
 import tw.idv.louislee.toolbox.ui.AppPreview
-import tw.idv.louislee.toolbox.ui.component.AppToolbar
-import tw.idv.louislee.toolbox.ui.page.datecalculator.DateCalculatorViewModel
-import tw.idv.louislee.toolbox.ui.page.datecalculator.DateCalculatorViewModelForPreview
-import tw.idv.louislee.toolbox.ui.page.datecalculator.DateCalculatorViewModelImpl
-import tw.idv.louislee.toolbox.ui.page.datecalculator.PastFutureDaysCalculator
-import tw.idv.louislee.toolbox.ui.page.datecalculator.PastFutureDaysCalculatorState
-import tw.idv.louislee.toolbox.ui.page.datecalculator.SubtractDaysCalculator
-import tw.idv.louislee.toolbox.ui.page.datecalculator.SubtractDaysCalculatorState
+import tw.idv.louislee.toolbox.ui.page.datecalculator.DateCalculatorScreen
+import tw.idv.louislee.toolbox.ui.preview.DrawerValuePreviewParameterProvider
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-
-private const val TAB_PAST_FUTURE_DAYS = 0
-private const val TAB_SUBTRACT_DAYS = 1
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var selectedTabIndex by remember {
-                mutableStateOf(TAB_PAST_FUTURE_DAYS)
-            }
-
-            val viewModel = viewModel<DateCalculatorViewModelImpl>()
-            Content(
-                selectedTabIndex = selectedTabIndex,
-                onTabSelect = { selectedTabIndex = it },
-                viewModel = viewModel
-            )
+            Content()
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Content(
-    selectedTabIndex: Int,
-    onTabSelect: (Int) -> Unit,
-    viewModel: DateCalculatorViewModel
+    navController: NavHostController = rememberNavController(),
+    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+    startDestination: String = DrawerScreen.DATE_CALCULATOR.route
 ) {
     ToolboxTheme {
-        AppToolbar(title = stringResource(id = R.string.date_calculator_title)) {
-            Column {
-                DateCalculatorTabRow(
-                    selectedTabIndex = selectedTabIndex,
-                    onTabSelect = onTabSelect
-                )
+        ModalNavigationDrawer(
+            drawerState = drawerState,
+            drawerContent = {
+                ModalDrawerSheet {
+                    val coroutineScope = rememberCoroutineScope()
+                    Spacer(modifier = Modifier.height(12.dp))
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(all = 8.dp)
-                ) {
-                    when (selectedTabIndex) {
-                        TAB_PAST_FUTURE_DAYS -> PastFutureDaysTabContent(viewModel = viewModel)
-                        TAB_SUBTRACT_DAYS -> SubtractDaysTabContent(viewModel = viewModel)
+                    for (screen in DrawerScreen.values()) {
+                        NavigationDrawerItem(
+                            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
+                            label = { Text(text = screen.title()) },
+                            selected = navController.currentDestination?.route == screen.route,
+                            onClick = {
+                                navController.navigate(route = screen.route)
+                                coroutineScope.launch {
+                                    drawerState.close()
+                                }
+                            }
+                        )
                     }
+                }
+            }
+        ) {
+            NavHost(
+                navController = navController,
+                startDestination = startDestination
+            ) {
+                composable(DrawerScreen.DATE_CALCULATOR.route) {
+                    DateCalculatorScreen(drawerState = drawerState)
                 }
             }
         }
     }
 }
 
-@Composable
-private fun DateCalculatorTabRow(selectedTabIndex: Int, onTabSelect: (Int) -> Unit) {
-    TabRow(selectedTabIndex = selectedTabIndex) {
-        Tab(
-            selected = selectedTabIndex == TAB_PAST_FUTURE_DAYS,
-            onClick = { onTabSelect(TAB_PAST_FUTURE_DAYS) },
-            text = {
-                Text(
-                    text = stringResource(id = R.string.date_calculator_past_future_days_title)
-                )
-            }
-        )
-        Tab(
-            selected = selectedTabIndex == TAB_SUBTRACT_DAYS,
-            onClick = { onTabSelect(TAB_SUBTRACT_DAYS) },
-            text = {
-                Text(
-                    text = stringResource(id = R.string.date_calculator_subtract_days_title)
-                )
-            }
-        )
-    }
-}
-
-@Composable
-private fun PastFutureDaysTabContent(viewModel: DateCalculatorViewModel) {
-    val state = viewModel.pastFutureDaysCalculatorState
-
-    CalculatorTabContent(
-        calculatorContent = {
-            PastFutureDaysCalculator(
-                state = state,
-                onValueChange = viewModel::onPastFutureDaysChange
-            )
-        },
-        resultContent = {
-            Text(
-                text = stringResource(
-                    id = if (state.isPast) {
-                        R.string.date_calculator_past_future_days_past_result
-                    } else {
-                        R.string.date_calculator_past_future_days_future_result
-                    },
-                    state.safeDays,
-                    viewModel.pastFutureDaysCalculateResult.format(
-                        DateTimeFormatter.ofPattern(stringResource(id = R.string.common_date_include_week_format))
-                    )
-                )
-            )
-        }
-    )
-}
-
-@Composable
-private fun CalculatorTabContent(
-    calculatorContent: @Composable () -> Unit,
-    resultContent: @Composable () -> Unit
-) {
-    Column(
-        modifier = Modifier.verticalScroll(state = rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        calculatorContent()
-
-        Spacer(modifier = Modifier.height(height = 16.dp))
-
-        Text(text = stringResource(id = R.string.common_calculate_result))
-
-        resultContent()
-    }
-}
-
-@Composable
-private fun SubtractDaysTabContent(viewModel: DateCalculatorViewModel) {
-    val state = viewModel.subtractDaysCalculatorState
-
-    CalculatorTabContent(
-        calculatorContent = {
-            SubtractDaysCalculator(
-                state = state,
-                onValueChange = viewModel::onSubtractDaysChange
-            )
-        },
-        resultContent = {
-            Text(
-                text = stringResource(
-                    id = R.string.date_calculator_subtract_days_result,
-                    viewModel.subtractDaysCalculateResult
-                )
-            )
-        }
-    )
-}
-
+@OptIn(ExperimentalMaterial3Api::class)
 @AppPreview
 @Composable
-private fun FirstTabPreview() {
-    Content(
-        selectedTabIndex = TAB_PAST_FUTURE_DAYS,
-        onTabSelect = {},
-        viewModel = DateCalculatorViewModelForPreview(
-            pastFutureDaysCalculatorState = PastFutureDaysCalculatorState(
-                date = LocalDate.of(2023, 5, 15),
-                days = 5
-            )
-        )
-    )
-}
-
-@AppPreview
-@Composable
-private fun SecondTabPreview() {
-    Content(
-        selectedTabIndex = TAB_SUBTRACT_DAYS,
-        onTabSelect = {},
-        viewModel = DateCalculatorViewModelForPreview(
-            subtractDaysCalculatorState = SubtractDaysCalculatorState(
-                firstDate = LocalDate.of(2023, 5, 10),
-                secondDate = LocalDate.of(2023, 5, 14)
-            )
-        )
-    )
+private fun Preview(@PreviewParameter(DrawerValuePreviewParameterProvider::class) value: DrawerValue) {
+    Content(drawerState = rememberDrawerState(initialValue = value))
 }

@@ -66,4 +66,20 @@ object Version {
      * 版本：https://mvnrepository.com/artifact/com.google.dagger/hilt-android
      */
     const val DAGGER_HILT = "2.46"
+
+    /**
+     * Hilt的Compose支援
+     *
+     * 版本：https://developer.android.com/jetpack/androidx/releases/hilt
+     */
+    const val DAGGER_HILT_COMPOSE = "1.0.0"
+
+    /**
+     * Android Jetpack Navigation
+     *
+     * Group：androidx.navigation
+     *
+     * 版本：https://developer.android.com/guide/navigation/navigation-getting-started
+     */
+    const val NAV = "2.5.3"
 }
