@@ -28,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import tw.idv.louislee.toolbox.ui.AppPreview
 import tw.idv.louislee.toolbox.ui.page.datecalculator.DateCalculatorScreen
+import tw.idv.louislee.toolbox.ui.page.generagor.GeneratorScreen
 import tw.idv.louislee.toolbox.ui.page.urlshortener.UrlShortenerScreen
 import tw.idv.louislee.toolbox.ui.preview.DrawerValuePreviewParameterProvider
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
@@ -83,6 +84,9 @@ private fun Content(
                 }
                 composable(DrawerScreen.URL_SHORTENER.route) {
                     UrlShortenerScreen(drawerState = drawerState)
+                }
+                composable(DrawerScreen.GENERATOR.route) {
+                    GeneratorScreen(drawerState = drawerState)
                 }
             }
         }
