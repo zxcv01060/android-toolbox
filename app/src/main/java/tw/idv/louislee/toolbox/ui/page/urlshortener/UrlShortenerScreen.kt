@@ -19,7 +19,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +29,7 @@ import tw.idv.louislee.toolbox.R
 import tw.idv.louislee.toolbox.ui.AppPreview
 import tw.idv.louislee.toolbox.ui.component.AppErrorMessage
 import tw.idv.louislee.toolbox.ui.component.AppToolbar
+import tw.idv.louislee.toolbox.ui.component.button.AppIconButton
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,11 +76,7 @@ private fun Content(
                     }
                 }
 
-                Text(
-                    text = stringResource(
-                        id = R.string.url_shortener_resolved_result, resolvedUrl
-                    )
-                )
+                ResolvedResult(resolvedUrl = resolvedUrl)
             }
         }
     }
@@ -103,6 +102,24 @@ private fun UrlShortenerForm(onSubmit: (String) -> Unit) {
 
         Button(onClick = { onSubmit(url.trim()) }) {
             Text(text = stringResource(id = R.string.common_submit))
+        }
+    }
+}
+
+@Composable
+private fun ResolvedResult(resolvedUrl: String) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(text = stringResource(id = R.string.url_shortener_resolved_result, resolvedUrl))
+
+        if (resolvedUrl.isBlank()) {
+            return@Row
+        }
+        val clipboardManager = LocalClipboardManager.current
+        AppIconButton(
+            drawable = R.drawable.baseline_content_copy_24,
+            contentDescription = R.string.common_copy
+        ) {
+            clipboardManager.setText(AnnotatedString(resolvedUrl))
         }
     }
 }

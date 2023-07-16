@@ -10,6 +10,7 @@
     <string name="common_cancel">@android:string/cancel</string>
     <string name="common_ok">@android:string/ok</string>
     <string name="common_error">錯誤</string>
+    <string name="common_copy">@android:string/copy</string>
 
     <string name="date_calculator_title">日期計算機</string>
     <string name="date_calculator_past_future_days_title">幾天前、後計算</string>
