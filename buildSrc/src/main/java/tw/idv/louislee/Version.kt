@@ -19,7 +19,7 @@ object Version {
      *
      * 版本：https://developer.android.com/jetpack/androidx/releases/compose-kotlin
      */
-    const val KOTLIN_COMPOSE_COMPILER_EXTENSION = "1.4.7"
+    const val KOTLIN_COMPOSE_COMPILER_EXTENSION = "1.4.8"
 
     /**
      * Android KTX版本
