@@ -24,7 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import tw.idv.louislee.toolbox.R
 import tw.idv.louislee.toolbox.ui.AppPreview
 import tw.idv.louislee.toolbox.ui.component.AppToolbar
@@ -42,7 +42,7 @@ fun DateCalculatorScreen(drawerState: DrawerState) {
         mutableStateOf(TAB_PAST_FUTURE_DAYS)
     }
 
-    val viewModel = viewModel<DateCalculatorViewModelImpl>()
+    val viewModel = hiltViewModel<DateCalculatorViewModel>()
     Content(
         drawerState = drawerState,
         selectedTabIndex = selectedTabIndex,
@@ -183,16 +183,15 @@ private fun SubtractDaysTabContent(viewModel: DateCalculatorViewModel) {
 @AppPreview
 @Composable
 private fun FirstTabPreview() {
+    val viewModel = DateCalculatorViewModel()
+    viewModel.pastFutureDaysCalculatorState.date = LocalDate.of(2023, 5, 15)
+    viewModel.pastFutureDaysCalculatorState.days = 5
+
     Content(
         drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
         selectedTabIndex = TAB_PAST_FUTURE_DAYS,
         onTabSelect = {},
-        viewModel = DateCalculatorViewModelForPreview(
-            pastFutureDaysCalculatorState = PastFutureDaysCalculatorState(
-                date = LocalDate.of(2023, 5, 15),
-                days = 5
-            )
-        )
+        viewModel = viewModel
     )
 }
 
@@ -200,15 +199,14 @@ private fun FirstTabPreview() {
 @AppPreview
 @Composable
 private fun SecondTabPreview() {
+    val viewModel = DateCalculatorViewModel()
+    viewModel.subtractDaysCalculatorState.firstDate = LocalDate.of(2023, 5, 10)
+    viewModel.subtractDaysCalculatorState.secondDate = LocalDate.of(2023, 5, 14)
+
     Content(
         drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
         selectedTabIndex = TAB_SUBTRACT_DAYS,
         onTabSelect = {},
-        viewModel = DateCalculatorViewModelForPreview(
-            subtractDaysCalculatorState = SubtractDaysCalculatorState(
-                firstDate = LocalDate.of(2023, 5, 10),
-                secondDate = LocalDate.of(2023, 5, 14)
-            )
-        )
+        viewModel = viewModel
     )
 }
