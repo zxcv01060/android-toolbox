@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -96,6 +98,18 @@ private fun UrlShortenerForm(onSubmit: (String) -> Unit) {
         OutlinedTextField(
             modifier = Modifier.weight(1f),
             label = { Text(text = stringResource(id = R.string.url_shortener_url_field)) },
+            trailingIcon = {
+                if (url.isBlank()) {
+                    return@OutlinedTextField
+                }
+
+                AppIconButton(
+                    icon = Icons.Filled.Clear,
+                    contentDescription = R.string.common_clear
+                ) {
+                    url = ""
+                }
+            },
             value = url,
             onValueChange = { url = it }
         )
