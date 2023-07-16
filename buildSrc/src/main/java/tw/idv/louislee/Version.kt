@@ -82,4 +82,31 @@ object Version {
      * 版本：https://developer.android.com/guide/navigation/navigation-getting-started
      */
     const val NAV = "2.5.3"
+
+    /**
+     * 建立Mock物件的套件
+     *
+     * Group：org.mockito.kotlin
+     *
+     * 版本：https://github.com/mockito/mockito-kotlin/releases
+     */
+    const val MOCKITO = "4.1.0"
+
+    /**
+     * Java HTML解析套件
+     *
+     * Group：org.jsoup
+     *
+     * 版本：https://mvnrepository.com/artifact/org.jsoup/jsoup
+     */
+    const val JSOUP = "1.16.1"
+
+    /**
+     * Kotlin Coroutines Test
+     *
+     * org.jetbrains.kotlinx:kotlinx-coroutines-test
+     *
+     * 版本：https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-test
+     */
+    const val COROUTINES_TEST = "1.7.1"
 }

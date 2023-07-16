@@ -6,6 +6,10 @@
     <string name="common_date_format">yyyy/MM/dd</string>
     <string name="common_date_include_week_format">yyyy/MM/dd EEEE</string>
     <string name="common_calculate_result">計算結果：</string>
+    <string name="common_submit">送出</string>
+    <string name="common_cancel">@android:string/cancel</string>
+    <string name="common_ok">@android:string/ok</string>
+    <string name="common_error">錯誤</string>
 
     <string name="date_calculator_title">日期計算機</string>
     <string name="date_calculator_past_future_days_title">幾天前、後計算</string>
@@ -18,4 +22,8 @@
     <string name="date_calculator_subtract_days_first_date">開始日期</string>
     <string name="date_calculator_subtract_days_second_date">結束日期</string>
     <string name="date_calculator_subtract_days_result">一共相隔 %1$d 天(含結束日期)</string>
+
+    <string name="url_shortener_title">短網址還原</string>
+    <string name="url_shortener_url_field">短網址</string>
+    <string name="url_shortener_resolved_result">還原結果：%1$s</string>
 </resources>

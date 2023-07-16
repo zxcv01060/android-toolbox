@@ -75,6 +75,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:${Version.DAGGER_HILT_COMPOSE}")
     kapt("com.google.dagger:hilt-android-compiler:${Version.DAGGER_HILT}")
     implementation("androidx.navigation:navigation-compose:${Version.NAV}")
+    implementation("org.jsoup:jsoup:${Version.JSOUP}")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -82,4 +83,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:${Version.MOCKITO}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.COROUTINES_TEST}")
 }
