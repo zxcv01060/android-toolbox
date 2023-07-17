@@ -44,9 +44,12 @@
 1. 能夠將一個PDF檔案拆成每頁一個PDF檔案
 2. 能夠將一個PDF檔案內的所有圖片讀出
 
-### ✅產生器
+### ⚠️產生器
 
-1. 能夠隨機產生一組UUID
+1. ✅能夠隨機產生一組UUID
+2. ❌能夠輸入資料庫連線資訊，而後選擇要產生Java、C#、[DB Mate(Go)](https://github.com/amacneil/dbmate)
+   的基本連線字串
+3. ❌能夠產生C# Entity Framework的反向工程指令(Db Scaffold)
 
 ### ⚠️雜湊、編碼
 
@@ -55,11 +58,6 @@
 3. 能做SHA系列加密
 4. 能夠解析JWT Token
    ⚠️還沒做到，其他可行
-
-### ❌連線字串
-
-1. 能夠輸入資料庫連線資訊，而後選擇要產生Java、C#、[DB Mate(Go)](https://github.com/amacneil/dbmate)
-   的基本連線字串
 
 ### ❌資料表實體
 
