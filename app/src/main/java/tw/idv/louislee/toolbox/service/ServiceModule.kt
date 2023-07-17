@@ -13,4 +13,7 @@ internal abstract class ServiceModule {
 
     @Binds
     abstract fun jsoupService(impl: JsoupServiceImpl): JsoupService
+
+    @Binds
+    abstract fun encryptionService(impl: EncryptionServiceImpl): EncryptionService
 }

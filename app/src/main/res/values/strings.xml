@@ -31,4 +31,18 @@
 
     <string name="generator_title">產生器</string>
     <string name="generator_generate">產生</string>
+
+    <string name="encryption_title">雜湊、編碼</string>
+    <string name="encryption_base_64">Base 64</string>
+    <string name="encryption_md5">MD5</string>
+    <string name="encryption_sha_1">SHA-1</string>
+    <string name="encryption_sha_256">SHA-256</string>
+    <string name="encryption_sha_384">SHA-384</string>
+    <string name="encryption_sha_512">SHA-512</string>
+    <string name="encryption_jwt">JWT</string>
+    <string name="encryption_algorithm_type">演算法</string>
+    <string name="encryption_plain_text">明文</string>
+    <string name="encryption_encoded_text">密文</string>
+    <string name="encryption_copy_encoded_text">複製結果</string>
+    <string name="encryption_encode_success">雜湊、編碼成功，共 %1$d 個字</string>
 </resources>
