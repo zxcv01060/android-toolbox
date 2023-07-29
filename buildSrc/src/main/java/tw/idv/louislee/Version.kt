@@ -40,7 +40,7 @@ object Version {
      *
      * 版本：https://mvnrepository.com/artifact/androidx.activity/activity-compose?repo=google
      */
-    const val ACTIVITY_COMPOSE = "1.7.1"
+    const val ACTIVITY_COMPOSE = "1.7.2"
 
     /**
      * Android Lifecycle版本
@@ -56,7 +56,7 @@ object Version {
      *
      * 版本：https://github.com/maxkeppeler/sheets-compose-dialogs/releases
      */
-    const val SHEETS_COMPOSE_DIALOGS = "1.1.1"
+    const val SHEETS_COMPOSE_DIALOGS = "1.2.0"
 
     /**
      * Jetpack DI套件 - Hilt
@@ -81,7 +81,7 @@ object Version {
      *
      * 版本：https://developer.android.com/guide/navigation/navigation-getting-started
      */
-    const val NAV = "2.5.3"
+    const val NAV = "2.6.0"
 
     /**
      * 建立Mock物件的套件
@@ -90,7 +90,7 @@ object Version {
      *
      * 版本：https://github.com/mockito/mockito-kotlin/releases
      */
-    const val MOCKITO = "4.1.0"
+    const val MOCKITO = "5.0.0"
 
     /**
      * Java HTML解析套件
@@ -108,5 +108,5 @@ object Version {
      *
      * 版本：https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-test
      */
-    const val COROUTINES_TEST = "1.7.1"
+    const val COROUTINES_TEST = "1.7.3"
 }
