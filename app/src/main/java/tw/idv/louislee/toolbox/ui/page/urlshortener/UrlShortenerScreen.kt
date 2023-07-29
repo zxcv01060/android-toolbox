@@ -105,10 +105,9 @@ private fun UrlShortenerForm(onSubmit: (String) -> Unit) {
 
                 AppIconButton(
                     icon = Icons.Filled.Clear,
-                    contentDescription = R.string.common_clear
-                ) {
-                    url = ""
-                }
+                    contentDescription = R.string.common_clear,
+                    onClick = { url = "" }
+                )
             },
             value = url,
             onValueChange = { url = it }
@@ -131,10 +130,9 @@ private fun ResolvedResult(resolvedUrl: String) {
         val clipboardManager = LocalClipboardManager.current
         AppIconButton(
             drawable = R.drawable.baseline_content_copy_24,
-            contentDescription = R.string.common_copy
-        ) {
-            clipboardManager.setText(AnnotatedString(resolvedUrl))
-        }
+            contentDescription = R.string.common_copy,
+            onClick = { clipboardManager.setText(AnnotatedString(resolvedUrl)) }
+        )
     }
 }
 

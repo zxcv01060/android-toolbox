@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -20,8 +21,14 @@ import androidx.compose.ui.res.stringResource
 import tw.idv.louislee.toolbox.ui.AppPreview
 
 @Composable
-fun AppIconButton(icon: ImageVector, @StringRes contentDescription: Int, onClick: () -> Unit) {
+fun AppIconButton(
+    icon: ImageVector,
+    @StringRes contentDescription: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     AppIconButton(
+        modifier = modifier,
         icon = icon,
         contentDescription = stringResource(id = contentDescription),
         onClick = onClick
@@ -29,8 +36,13 @@ fun AppIconButton(icon: ImageVector, @StringRes contentDescription: Int, onClick
 }
 
 @Composable
-fun AppIconButton(icon: ImageVector, contentDescription: String, onClick: () -> Unit) {
-    IconButton(onClick = onClick) {
+fun AppIconButton(
+    icon: ImageVector,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(modifier = modifier, onClick = onClick) {
         Icon(imageVector = icon, contentDescription = contentDescription)
     }
 }
@@ -39,9 +51,11 @@ fun AppIconButton(icon: ImageVector, contentDescription: String, onClick: () -> 
 fun AppIconButton(
     @DrawableRes drawable: Int,
     @StringRes contentDescription: Int,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AppIconButton(
+        modifier = modifier,
         drawable = drawable,
         contentDescription = stringResource(id = contentDescription),
         onClick = onClick
@@ -49,15 +63,26 @@ fun AppIconButton(
 }
 
 @Composable
-fun AppIconButton(@DrawableRes drawable: Int, contentDescription: String, onClick: () -> Unit) {
-    IconButton(onClick = onClick) {
+fun AppIconButton(
+    @DrawableRes drawable: Int,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(modifier = modifier, onClick = onClick) {
         Icon(painter = painterResource(id = drawable), contentDescription = contentDescription)
     }
 }
 
 @Composable
-fun AppIconButton(painter: Painter, @StringRes contentDescription: Int, onClick: () -> Unit) {
+fun AppIconButton(
+    painter: Painter,
+    @StringRes contentDescription: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     AppIconButton(
+        modifier = modifier,
         painter = painter,
         contentDescription = stringResource(id = contentDescription),
         onClick = onClick
@@ -65,8 +90,13 @@ fun AppIconButton(painter: Painter, @StringRes contentDescription: Int, onClick:
 }
 
 @Composable
-fun AppIconButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
-    IconButton(onClick = onClick) {
+fun AppIconButton(
+    painter: Painter,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(modifier = modifier, onClick = onClick) {
         Icon(painter = painter, contentDescription = contentDescription)
     }
 }
@@ -78,9 +108,11 @@ private fun Preview() {
         var text by remember {
             mutableStateOf("")
         }
-        AppIconButton(icon = Icons.Filled.Search, contentDescription = "") {
-            text = "Click!"
-        }
+        AppIconButton(
+            icon = Icons.Filled.Search,
+            contentDescription = "",
+            onClick = { text = "Click!" }
+        )
 
         Text(text = text)
     }

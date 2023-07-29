@@ -40,7 +40,11 @@
     <string name="encryption_sha_384">SHA-384</string>
     <string name="encryption_sha_512">SHA-512</string>
     <string name="encryption_jwt">JWT</string>
+    <string name="encryption_jwt_header">Header</string>
+    <string name="encryption_jwt_payload">Payload</string>
     <string name="encryption_algorithm_type">演算法</string>
+    <string name="encryption_encode">加密</string>
+    <string name="encryption_decode">解密</string>
     <string name="encryption_plain_text">明文</string>
     <string name="encryption_encoded_text">密文</string>
     <string name="encryption_copy_encoded_text">複製結果</string>

@@ -20,11 +20,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.text.trimmedLength
 import androidx.hilt.navigation.compose.hiltViewModel
+import org.json.JSONObject
 import tw.idv.louislee.toolbox.R
 import tw.idv.louislee.toolbox.encryption.EncryptionAlgorithmType
 import tw.idv.louislee.toolbox.ui.AppPreview
@@ -43,6 +44,9 @@ fun EncryptionScreen(
         algorithmType = viewModel.algorithmType,
         plainText = viewModel.plainText,
         encodedText = viewModel.encodedText,
+        onEncodedTextChange = { viewModel.encodedText = it },
+        jwtHeader = viewModel.jwtHeader,
+        jwtPayload = viewModel.jwtPayload,
         onAlgorithmTypeChange = { viewModel.algorithmType = it },
         onPlainTextChange = { viewModel.plainText = it.trim() },
         encode = viewModel::encode,
@@ -57,6 +61,9 @@ private fun Content(
     algorithmType: EncryptionAlgorithmType,
     plainText: String,
     encodedText: String,
+    onEncodedTextChange: (String) -> Unit,
+    jwtHeader: String,
+    jwtPayload: String,
     onAlgorithmTypeChange: (EncryptionAlgorithmType) -> Unit,
     onPlainTextChange: (String) -> Unit,
     encode: () -> Unit,
@@ -67,70 +74,59 @@ private fun Content(
             title = stringResource(id = R.string.encryption_title),
             drawerState = drawerState
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                EncryptionForm(
+            Column(
+                modifier = Modifier.padding(all = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                OutlinedTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    label = { Text(text = stringResource(id = R.string.encryption_plain_text)) },
+                    value = plainText,
+                    onValueChange = onPlainTextChange
+                )
+
+                AlgorithmOptions(
                     algorithmType = algorithmType,
-                    plainText = plainText,
-                    encodedText = encodedText,
                     onAlgorithmTypeChange = onAlgorithmTypeChange,
-                    onPlainTextChange = onPlainTextChange,
-                    encode = encode
+                    encode = encode,
+                    decode = decode
                 )
 
-                if (encodedText.isBlank()) {
-                    return@Column
-                }
-
-                Text(
-                    text = stringResource(
-                        id = R.string.encryption_encode_success,
-                        encodedText.trimmedLength()
-                    )
+                DecodeForm(
+                    algorithmType = algorithmType,
+                    encodedText = encodedText,
+                    onEncodedTextChange = onEncodedTextChange,
+                    jwtHeader = jwtHeader,
+                    jwtPayload = jwtPayload,
                 )
-
-                Text(text = encodedText)
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun EncryptionForm(
+private fun AlgorithmOptions(
     algorithmType: EncryptionAlgorithmType,
-    plainText: String,
-    encodedText: String,
     onAlgorithmTypeChange: (EncryptionAlgorithmType) -> Unit,
-    onPlainTextChange: (String) -> Unit,
-    encode: () -> Unit
+    encode: () -> Unit,
+    decode: () -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         EncryptionAlgorithmTypeDropdown(
+            modifier = Modifier.weight(1f),
             selectedAlgorithmType = algorithmType,
             onAlgorithmTypeChange = onAlgorithmTypeChange
         )
 
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = stringResource(id = R.string.encryption_plain_text)) },
-            value = plainText,
-            onValueChange = onPlainTextChange
-        )
+        Button(enabled = algorithmType.isCanBeEncode, onClick = encode) {
+            Text(text = stringResource(id = R.string.encryption_encode))
+        }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            Button(onClick = encode) {
-                Text(text = stringResource(id = R.string.common_submit))
-            }
-
-            AppCopyButton(
-                buttonText = R.string.encryption_copy_encoded_text,
-                copyText = encodedText
-            )
+        Button(enabled = algorithmType.isCanBeDecode, onClick = decode) {
+            Text(text = stringResource(id = R.string.encryption_decode))
         }
     }
 }
@@ -138,6 +134,7 @@ private fun EncryptionForm(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun EncryptionAlgorithmTypeDropdown(
+    modifier: Modifier,
     selectedAlgorithmType: EncryptionAlgorithmType,
     onAlgorithmTypeChange: (EncryptionAlgorithmType) -> Unit
 ) {
@@ -145,7 +142,10 @@ private fun EncryptionAlgorithmTypeDropdown(
         mutableStateOf(false)
     }
 
-    ExposedDropdownMenuBox(expanded = isExpanded, onExpandedChange = { isExpanded = it }) {
+    ExposedDropdownMenuBox(
+        modifier = modifier,
+        expanded = isExpanded,
+        onExpandedChange = { isExpanded = it }) {
         OutlinedTextField(
             modifier = Modifier
                 .menuAnchor()
@@ -171,6 +171,84 @@ private fun EncryptionAlgorithmTypeDropdown(
     }
 }
 
+@Composable
+private fun DecodeForm(
+    algorithmType: EncryptionAlgorithmType,
+    encodedText: String,
+    onEncodedTextChange: (String) -> Unit,
+    jwtHeader: String,
+    jwtPayload: String
+) {
+    when (algorithmType) {
+        EncryptionAlgorithmType.JWT -> JwtEncodeForm(
+            encodedText = encodedText,
+            onEncodedTextChange = onEncodedTextChange,
+            header = jwtHeader,
+            payload = jwtPayload
+        )
+
+        else -> TextEncodeForm(
+            encodedText = encodedText,
+            onEncodedTextChange = onEncodedTextChange
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun JwtEncodeForm(
+    encodedText: String,
+    onEncodedTextChange: (String) -> Unit,
+    header: String,
+    payload: String
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(text = stringResource(id = R.string.encryption_encoded_text)) },
+            value = encodedText,
+            onValueChange = onEncodedTextChange
+        )
+
+        if (header.isNotBlank()) {
+            Column {
+                Text(text = stringResource(id = R.string.encryption_jwt_header))
+
+                Text(text = JSONObject(header).toString(4))
+            }
+        }
+
+        if (payload.isNotBlank()) {
+            Column {
+                Text(text = stringResource(id = R.string.encryption_jwt_payload))
+
+                Text(text = JSONObject(payload).toString(4))
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun TextEncodeForm(
+    encodedText: String,
+    onEncodedTextChange: (String) -> Unit
+) {
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        label = { Text(text = stringResource(id = R.string.encryption_encoded_text)) },
+        trailingIcon = {
+            if (encodedText.isBlank()) {
+                return@OutlinedTextField
+            }
+
+            AppCopyButton(copyText = encodedText)
+        },
+        value = encodedText,
+        onValueChange = onEncodedTextChange
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @AppPreview
 @Composable
@@ -184,15 +262,23 @@ private fun Preview() {
     var encodedText by remember {
         mutableStateOf("")
     }
+    var jwtHeader by remember {
+        mutableStateOf("")
+    }
+    var jwtPayload by remember {
+        mutableStateOf("")
+    }
 
     Content(
         drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
         algorithmType = algorithmType,
         plainText = plainText,
         encodedText = encodedText,
+        onEncodedTextChange = { encodedText = it },
+        jwtHeader = jwtHeader,
+        jwtPayload = jwtPayload,
         onAlgorithmTypeChange = { algorithmType = it },
-        onPlainTextChange = { plainText = it },
-        encode = {},
-        decode = {}
-    )
+        onPlainTextChange = { plainText = it.trim() },
+        encode = {}
+    ) {}
 }
