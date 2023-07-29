@@ -51,13 +51,13 @@
    的基本連線字串
 3. ❌能夠產生C# Entity Framework的反向工程指令(Db Scaffold)
 
-### ⚠️雜湊、編碼
+### ✅雜湊、編碼
 
 1. Base64
 2. 能做MD5加密
 3. 能做SHA系列加密
-4. 能夠解析JWT Token
-   ⚠️還沒做到，其他可行
+4. 能夠將JWT Token的Header、Payload拆出
+   ⚠️操作上還不順手，需要先將JWT Token貼到'密文'區塊，然後按'解密'按鈕才會顯示
 
 ### ❌資料表實體
 
