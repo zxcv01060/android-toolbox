@@ -19,7 +19,7 @@ object Version {
      *
      * 版本：https://developer.android.com/jetpack/androidx/releases/compose-kotlin
      */
-    const val KOTLIN_COMPOSE_COMPILER_EXTENSION = "1.4.8"
+    const val KOTLIN_COMPOSE_COMPILER_EXTENSION = "1.5.1"
 
     /**
      * Android KTX版本
@@ -65,7 +65,7 @@ object Version {
      *
      * 版本：https://mvnrepository.com/artifact/com.google.dagger/hilt-android
      */
-    const val DAGGER_HILT = "2.46"
+    const val DAGGER_HILT = "2.47"
 
     /**
      * Hilt的Compose支援

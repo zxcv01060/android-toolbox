@@ -7,5 +7,5 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 @OptIn(ExperimentalMaterial3Api::class)
 class DrawerValuePreviewParameterProvider : PreviewParameterProvider<DrawerValue> {
     override val values: Sequence<DrawerValue>
-        get() = DrawerValue.values().asSequence()
+        get() = DrawerValue.entries.asSequence()
 }

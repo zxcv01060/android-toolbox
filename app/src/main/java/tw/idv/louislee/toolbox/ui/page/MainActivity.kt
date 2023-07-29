@@ -60,7 +60,7 @@ private fun Content(
                     val coroutineScope = rememberCoroutineScope()
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    for (screen in DrawerScreen.values()) {
+                    for (screen in DrawerScreen.entries) {
                         NavigationDrawerItem(
                             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
                             label = { Text(text = screen.title()) },

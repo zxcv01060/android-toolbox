@@ -158,7 +158,7 @@ private fun EncryptionAlgorithmTypeDropdown(
         )
 
         ExposedDropdownMenu(expanded = isExpanded, onDismissRequest = { isExpanded = false }) {
-            for (algorithmType in EncryptionAlgorithmType.values()) {
+            for (algorithmType in EncryptionAlgorithmType.entries) {
                 DropdownMenuItem(
                     text = { Text(text = stringResource(id = algorithmType.title)) },
                     onClick = {
