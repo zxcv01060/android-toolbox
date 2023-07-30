@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import tw.idv.louislee.toolbox.R
 import tw.idv.louislee.toolbox.ui.AppPreview
 import tw.idv.louislee.toolbox.ui.component.button.AppCopyButton
+import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
 import java.util.UUID
 
 @Composable
@@ -62,7 +63,9 @@ private fun UuidRow(id: Int, uuid: String) {
 @AppPreview
 @Composable
 private fun Preview() {
-    UuidGenerator {
-        UUID.randomUUID().toString()
+    ToolboxTheme {
+        UuidGenerator {
+            UUID.randomUUID().toString()
+        }
     }
 }
