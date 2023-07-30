@@ -31,6 +31,9 @@
 
     <string name="generator_title">產生器</string>
     <string name="generator_generate">產生</string>
+    <string name="generator_uuid_title">UUID</string>
+    <string name="generator_database_connection_string_title">資料庫連線字串</string>
+    <string name="generator_c_sharp_db_scaffold_title">C# EF反向工程指令</string>
 
     <string name="encryption_title">雜湊、編碼</string>
     <string name="encryption_base_64">Base 64</string>
