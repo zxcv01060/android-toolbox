@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
@@ -34,7 +33,6 @@ import tw.idv.louislee.toolbox.ui.component.AppToolbar
 import tw.idv.louislee.toolbox.ui.component.button.AppIconButton
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UrlShortenerScreen(
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
@@ -43,7 +41,6 @@ fun UrlShortenerScreen(
     Content(drawerState = drawerState, requestResolveUrl = viewModel::resolveUrl)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Content(
     drawerState: DrawerState,
@@ -84,7 +81,6 @@ private fun Content(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun UrlShortenerForm(onSubmit: (String) -> Unit) {
     var url by remember {
@@ -136,7 +132,6 @@ private fun ResolvedResult(resolvedUrl: String) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @AppPreview
 @Composable
 private fun Preview() {

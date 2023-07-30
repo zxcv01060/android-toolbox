@@ -48,7 +48,6 @@ fun AppToolbar(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppToolbar(
     title: String,
@@ -118,7 +117,6 @@ private fun NavigationBackPreview() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @AppPreview
 @Composable
 private fun MenuPreview() {

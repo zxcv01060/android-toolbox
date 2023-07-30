@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
@@ -29,7 +28,6 @@ import tw.idv.louislee.toolbox.ui.component.button.AppCopyButton
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
 import java.util.UUID
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GeneratorScreen(
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
@@ -38,7 +36,6 @@ fun GeneratorScreen(
     Content(drawerState = drawerState, generateUuid = viewModel::generateUuid)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Content(drawerState: DrawerState, generateUuid: () -> String) {
     ToolboxTheme {
@@ -89,7 +86,6 @@ private fun GenerateButton(onClick: () -> Unit) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @AppPreview
 @Composable
 private fun Preview() {

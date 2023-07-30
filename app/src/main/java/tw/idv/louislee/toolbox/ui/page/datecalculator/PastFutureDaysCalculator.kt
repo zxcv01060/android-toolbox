@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -43,7 +42,6 @@ class PastFutureDaysCalculatorState(
     val safeDays get() = days ?: 0
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PastFutureDaysCalculator(state: PastFutureDaysCalculatorState, onValueChange: () -> Unit) {
     Column(

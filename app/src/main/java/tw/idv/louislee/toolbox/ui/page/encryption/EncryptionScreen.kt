@@ -33,7 +33,6 @@ import tw.idv.louislee.toolbox.ui.component.AppToolbar
 import tw.idv.louislee.toolbox.ui.component.button.AppCopyButton
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EncryptionScreen(
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
@@ -54,7 +53,6 @@ fun EncryptionScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Content(
     drawerState: DrawerState,
@@ -194,7 +192,6 @@ private fun DecodeForm(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun JwtEncodeForm(
     encodedText: String,
@@ -228,7 +225,6 @@ private fun JwtEncodeForm(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TextEncodeForm(
     encodedText: String,
@@ -249,7 +245,6 @@ private fun TextEncodeForm(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @AppPreview
 @Composable
 private fun Preview() {
