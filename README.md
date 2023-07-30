@@ -5,7 +5,7 @@
 
 * 電腦：Macbook M1 Pro
 * IDE：[Android Studio](https://developer.android.com/studio)
-* 程式語言：[Kotlin](https://kotlinlang.org/) 1.8.22(JDK 17)
+* 程式語言：[Kotlin](https://kotlinlang.org/) 1.9.0(JDK 17)
 * 主要套件：[Jetpack Compose](https://developer.android.com/jetpack/compose?hl=zh-tw)
 * 樣式套件：[Material 3](https://m3.material.io/)
 
