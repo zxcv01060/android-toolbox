@@ -1,4 +1,4 @@
-package tw.idv.louislee.toolbox.ui.page.generagor
+package tw.idv.louislee.toolbox.ui.page.generator
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
