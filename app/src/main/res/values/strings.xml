@@ -12,6 +12,7 @@
     <string name="common_error">錯誤</string>
     <string name="common_copy">@android:string/copy</string>
     <string name="common_clear">清除</string>
+    <string name="common_time_second">秒</string>
 
     <string name="date_calculator_title">日期計算機</string>
     <string name="date_calculator_past_future_days_title">幾天前、後計算</string>
@@ -34,6 +35,21 @@
     <string name="generator_uuid_title">UUID</string>
     <string name="generator_database_connection_string_title">資料庫連線字串</string>
     <string name="generator_c_sharp_db_scaffold_title">C# EF反向工程指令</string>
+    <string name="generator_database_connection_string_type">類型</string>
+    <string name="generator_database_connection_string_java">Java</string>
+    <string name="generator_database_connection_string_c_sharp">C#</string>
+    <string name="generator_database_connection_string_db_mate">Db Mate</string>
+    <string name="generator_database_connection_string_host">主機位置(IP、Host)</string>
+    <string name="generator_database_connection_string_port">連接埠(Port)</string>
+    <string name="generator_database_connection_string_database_type">資料庫</string>
+    <string name="generator_database_connection_string_my_sql">MySQL</string>
+    <string name="generator_database_connection_string_sql_server">Sql Server</string>
+    <string name="generator_database_connection_string_account">帳號</string>
+    <string name="generator_database_connection_string_password">密碼</string>
+    <string name="generator_database_connection_string_is_password_encodedBy_base64">是否為Base64</string>
+    <string name="generator_database_connection_string_property_my_sql_treat_tiny_int_as_boolean">是否將TINYINT(1)轉換成bool類型</string>
+    <string name="generator_database_connection_string_property_my_sql_default_command_timeout">預設的SQL語法逾時時間</string>
+    <string name="generator_database_connection_string_property_my_sql_default_command_timeout_hint">單位為秒，預設為30秒，0秒表示不會逾時</string>
 
     <string name="encryption_title">雜湊、編碼</string>
     <string name="encryption_base_64">Base 64</string>

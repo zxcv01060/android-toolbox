@@ -16,4 +16,7 @@ internal abstract class ServiceModule {
 
     @Binds
     abstract fun encryptionService(impl: EncryptionServiceImpl): EncryptionService
+
+    @Binds
+    abstract fun generatorService(impl: GeneratorServiceImpl): GeneratorService
 }
