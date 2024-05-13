@@ -19,35 +19,35 @@ object Version {
      *
      * 版本：https://developer.android.com/jetpack/androidx/releases/compose-kotlin
      */
-    const val KOTLIN_COMPOSE_COMPILER_EXTENSION = "1.5.1"
+    const val KOTLIN_COMPOSE_COMPILER_EXTENSION = "1.5.13"
 
     /**
      * Android KTX版本
      *
      * 版本：https://developer.android.com/jetpack/androidx/releases/core
      */
-    const val ANDROID_CORE = "1.10.1"
+    const val ANDROID_CORE = "1.13.1"
 
     /**
      * Android Jetpack Compose
      *
      * 版本：https://github.com/chrisbanes/compose-bom/releases
      */
-    const val COMPOSE = "2023.03.00"
+    const val COMPOSE = "2024.05.00"
 
     /**
      * Android Jetpack Activity Compose版本
      *
      * 版本：https://mvnrepository.com/artifact/androidx.activity/activity-compose?repo=google
      */
-    const val ACTIVITY_COMPOSE = "1.7.2"
+    const val ACTIVITY_COMPOSE = "1.9.0"
 
     /**
      * Android Lifecycle版本
      *
      * 版本：https://developer.android.com/jetpack/androidx/releases/lifecycle
      */
-    const val LIFECYCLE = "2.6.1"
+    const val LIFECYCLE = "2.7.0"
 
     /**
      * 以Jetpack Compose實作的各種選擇器、Dialog，包含日期、時間、顏色等
@@ -56,7 +56,7 @@ object Version {
      *
      * 版本：https://github.com/maxkeppeler/sheets-compose-dialogs/releases
      */
-    const val SHEETS_COMPOSE_DIALOGS = "1.2.0"
+    const val SHEETS_COMPOSE_DIALOGS = "1.3.0"
 
     /**
      * Jetpack DI套件 - Hilt
@@ -65,14 +65,14 @@ object Version {
      *
      * 版本：https://mvnrepository.com/artifact/com.google.dagger/hilt-android
      */
-    const val DAGGER_HILT = "2.47"
+    const val DAGGER_HILT = "2.51.1"
 
     /**
      * Hilt的Compose支援
      *
      * 版本：https://developer.android.com/jetpack/androidx/releases/hilt
      */
-    const val DAGGER_HILT_COMPOSE = "1.0.0"
+    const val DAGGER_HILT_COMPOSE = "1.2.0"
 
     /**
      * Android Jetpack Navigation
@@ -81,7 +81,7 @@ object Version {
      *
      * 版本：https://developer.android.com/guide/navigation/navigation-getting-started
      */
-    const val NAV = "2.6.0"
+    const val NAV = "2.7.7"
 
     /**
      * 建立Mock物件的套件
@@ -90,7 +90,7 @@ object Version {
      *
      * 版本：https://github.com/mockito/mockito-kotlin/releases
      */
-    const val MOCKITO = "5.0.0"
+    const val MOCKITO = "5.3.1"
 
     /**
      * Java HTML解析套件
@@ -99,7 +99,7 @@ object Version {
      *
      * 版本：https://mvnrepository.com/artifact/org.jsoup/jsoup
      */
-    const val JSOUP = "1.16.1"
+    const val JSOUP = "1.17.2"
 
     /**
      * Kotlin Coroutines Test
@@ -108,5 +108,5 @@ object Version {
      *
      * 版本：https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-test
      */
-    const val COROUTINES_TEST = "1.7.3"
+    const val COROUTINES_TEST = "1.8.1"
 }
