@@ -7,7 +7,7 @@ object Version {
     /**
      * Android Compile SDK及 Target SDK版本
      */
-    const val SDK = 33
+    const val SDK = 34
 
     /**
      * 能安裝此App的Android最低版本
