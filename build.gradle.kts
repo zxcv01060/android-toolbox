@@ -4,5 +4,7 @@ plugins {
     id("com.android.library") version "8.4.0" apply false
     id("org.jetbrains.kotlin.android") version "1.9.23" apply false
     id("org.jetbrains.kotlin.jvm") version "1.9.23" apply false
+    // 版本：https://mvnrepository.com/artifact/com.google.dagger/hilt-android
+    // 同Version.DAGGER_HILT
     id("com.google.dagger.hilt.android") version "2.51.1" apply false
 }
