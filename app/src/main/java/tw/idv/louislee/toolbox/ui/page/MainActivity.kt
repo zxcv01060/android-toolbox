@@ -15,7 +15,11 @@ import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -58,12 +62,17 @@ private fun Content(
                     val coroutineScope = rememberCoroutineScope()
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    var selectedItem by remember {
+                        mutableStateOf(startDestination)
+                    }
+
                     for (screen in DrawerScreen.entries) {
                         NavigationDrawerItem(
                             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
                             label = { Text(text = screen.title()) },
-                            selected = navController.currentDestination?.route == screen.route,
+                            selected = selectedItem == screen.route,
                             onClick = {
+                                selectedItem = screen.route
                                 navController.navigate(route = screen.route)
                                 coroutineScope.launch {
                                     drawerState.close()
