@@ -50,6 +50,7 @@ android {
     packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            excludes.add("META-INF/*")
         }
     }
 }
@@ -76,6 +77,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:${Version.DAGGER_HILT}")
     implementation("androidx.navigation:navigation-compose:${Version.NAV}")
     implementation("org.jsoup:jsoup:${Version.JSOUP}")
+    implementation("com.tom-roush:pdfbox-android:${Version.ANDROID_APACHE_PDFBOX}")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

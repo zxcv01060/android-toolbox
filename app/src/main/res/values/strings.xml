@@ -13,6 +13,7 @@
     <string name="common_copy">@android:string/copy</string>
     <string name="common_clear">清除</string>
     <string name="common_time_second">秒</string>
+    <string name="common_choose_file">選擇</string>
 
     <string name="date_calculator_title">日期計算機</string>
     <string name="date_calculator_past_future_days_title">幾天前、後計算</string>
@@ -29,6 +30,16 @@
     <string name="url_shortener_title">短網址還原</string>
     <string name="url_shortener_url_field">短網址</string>
     <string name="url_shortener_resolved_result">還原結果：%1$s</string>
+
+    <string name="pdf_title">PDF</string>
+    <string name="pdf_separate_file_title">分割檔案</string>
+    <string name="pdf_separate_chooser_placeholder">選擇檔案</string>
+    <string name="pdf_separate_is_zipped">是否壓縮</string>
+    <string name="pdf_separate_processing">正在分割PDF檔案</string>
+    <string name="pdf_separate_completed">分割完成</string>
+    <string name="pdf_separate_open_file_directory">"開啟檔案位置"</string>
+    <string name="pdf_choose_file">選擇PDF檔案</string>
+    <string name="pdf_save_path">選擇存檔路徑</string>
 
     <string name="generator_title">產生器</string>
     <string name="generator_generate">產生</string>

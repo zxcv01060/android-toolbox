@@ -29,6 +29,7 @@ import tw.idv.louislee.toolbox.ui.AppPreview
 import tw.idv.louislee.toolbox.ui.page.datecalculator.DateCalculatorScreen
 import tw.idv.louislee.toolbox.ui.page.encryption.EncryptionScreen
 import tw.idv.louislee.toolbox.ui.page.generator.GeneratorScreen
+import tw.idv.louislee.toolbox.ui.page.pdf.PdfScreen
 import tw.idv.louislee.toolbox.ui.page.urlshortener.UrlShortenerScreen
 import tw.idv.louislee.toolbox.ui.preview.DrawerValuePreviewParameterProvider
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
@@ -82,6 +83,9 @@ private fun Content(
                 }
                 composable(DrawerScreen.URL_SHORTENER.route) {
                     UrlShortenerScreen(drawerState = drawerState)
+                }
+                composable(DrawerScreen.PDF.route) {
+                    PdfScreen(drawerState = drawerState)
                 }
                 composable(DrawerScreen.GENERATOR.route) {
                     GeneratorScreen(drawerState = drawerState)

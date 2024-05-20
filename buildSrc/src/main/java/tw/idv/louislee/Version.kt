@@ -109,4 +109,17 @@ object Version {
      * 版本：https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-test
      */
     const val COROUTINES_TEST = "1.8.1"
+
+    /**
+     * Android Apache PDFBox套件，原PDFBox因為有用到字型等原生Java AWT套件，Android是Google自行實作的，所以會沒辦法用
+     *
+     * 原套件：org.apache.pdfbox:pdfbox
+     *
+     * 原套件版本：https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
+     *
+     * com.tom-roush:pdfbox-android
+     *
+     * 版本：https://github.com/TomRoush/PdfBox-Android
+     */
+    const val ANDROID_APACHE_PDFBOX = "2.0.27.0"
 }

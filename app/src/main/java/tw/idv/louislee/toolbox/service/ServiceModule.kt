@@ -19,4 +19,7 @@ internal abstract class ServiceModule {
 
     @Binds
     abstract fun generatorService(impl: GeneratorServiceImpl): GeneratorService
+
+    @Binds
+    abstract fun pdfService(impl: PdfServiceImpl): PdfService
 }
