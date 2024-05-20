@@ -1,5 +1,6 @@
 package tw.idv.louislee.toolbox.ui.component.form
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
@@ -9,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import tw.idv.louislee.toolbox.ui.AppPreview
 import tw.idv.louislee.toolbox.ui.theme.ToolboxTheme
 
@@ -17,7 +19,7 @@ fun AppCheckbox(label: String, isChecked: Boolean, onCheckedChange: (Boolean) ->
     Row(verticalAlignment = Alignment.CenterVertically) {
         Checkbox(checked = isChecked, onCheckedChange = onCheckedChange)
 
-        Text(text = label)
+        Text(modifier = Modifier.clickable { onCheckedChange(!isChecked) }, text = label)
     }
 }
 
